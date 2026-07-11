@@ -1,28 +1,35 @@
-# WonderQuest Stateful Edition
+# WonderQuest 2.0
 
-A GoDaddy Node.js compatible, password-protected learning adventure for ages 2–12.
+A password-protected educational adventure app for ages 2–12, packaged for GoDaddy Node.js Hosting.
 
-## Key behaviour
-- New players answer only name and age once.
-- Existing players go straight to the adventure map.
-- Unfinished missions resume at the next unanswered question.
-- Questions generated for a mission are stored with that player and are not recycled during the mission.
-- Stars, badges and progress are saved in the browser automatically.
-- Parents can add, reset or delete players.
+## New in 2.0
 
-## Local run
+- Five progressively harder levels in every adventure world
+- Levels unlock in order; completed levels cannot be replayed unless a parent resets progress
+- Animated screen transitions, guide motion, answer feedback and confetti celebrations
+- Optional sound effects with a persistent mute button
+- Optional player profile image upload
+- Uploaded photos are cropped/resized to 256×256 and stored locally in the browser
+- Separate progress, levels, stars and badges for every player
+- Existing profiles from earlier WonderQuest versions are migrated automatically
+
+## Run locally
+
 ```bash
 npm install
 npm start
 ```
-Open http://localhost:3000. Default password: `ohana`.
 
-## GoDaddy environment variables
-- `SITE_PASSWORD`
-- `SESSION_SECRET`
+Open `http://localhost:3000`.
+
+## Environment variables
+
+- `SITE_PASSWORD` — family site password
+- `SESSION_SECRET` — a long random secret
 - `NODE_ENV=production`
 
-Do not set `PORT`; GoDaddy supplies it.
+Do not set `PORT` on GoDaddy; it supplies this automatically.
 
-## No repeated completed adventures
-Once a player completes an adventure, its card is marked Completed and cannot be started again. A parent can make completed adventures available again by using Reset progress for that player.
+## Deploy through GitHub Desktop
+
+Copy these files into the local `wonderquest` repository, commit them, push origin, then use GoDaddy's Pull from GitHub/redeploy function.
