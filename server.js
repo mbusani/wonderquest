@@ -61,7 +61,7 @@ function loginPage(message = '') {
 
 app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'wonderquest', version: '2.0.0' }));
 app.get('/login-lilo', (_req, res) => res.sendFile(path.join(publicDir, 'assets', 'lilo.webp')));
-app.get('/login-stitch', (_req, res) => res.sendFile(path.join(publicDir, 'assets', 'stitch.webp')));
+app.get('/login-stitch', (_req, res) => res.sendFile(path.join(publicDir, 'assets', 'stitch.png')));
 app.get('/login', (req, res) => isAuthenticated(req) ? res.redirect('/') : res.send(loginPage()));
 app.post('/login', (req, res) => {
   const supplied = String(req.body.password || '');
