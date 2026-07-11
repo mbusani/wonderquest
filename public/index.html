@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#6c5ce7" />
+    <meta name="description" content="WonderQuest makes learning feel like an adventure for children aged 2 to 12, guided by Lilo and Stitch." />
+    <title>WonderQuest Learning with Lilo &amp; Stitch</title>
+    <script type="module" crossorigin src="/assets/index-CTULAF7m.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CIkqkz-p.css">
+  </head>
+  <body>
+    <section class="ohana-guide-banner" role="region" aria-label="Lilo and Stitch adventure guides">
+      <img src="/assets/lilo.webp" alt="Lilo, your friendly learning guide" class="ohana-lilo" />
+      <div class="ohana-copy">
+        <strong>Lilo &amp; Stitch are your WonderQuest guides!</strong>
+        <span>Lilo helps with stories and creativity. Stitch helps with puzzles, maths and missions.</span>
+      </div>
+      <img src="/assets/stitch.webp" alt="Stitch, your playful learning guide" class="ohana-stitch" />
+    </section>
+    <div id="root"></div>
+
+    <aside class="guide-dock" aria-live="polite">
+      <button class="guide-character lilo-guide active" data-guide="lilo" aria-label="Hear from Lilo">
+        <img src="/assets/lilo.webp" alt="" />
+        <span>Lilo</span>
+      </button>
+      <div class="guide-speech" id="guideSpeech">Aloha! Pick an adventure and we’ll learn together.</div>
+      <button class="guide-character stitch-guide" data-guide="stitch" aria-label="Hear from Stitch">
+        <img src="/assets/stitch.webp" alt="" />
+        <span>Stitch</span>
+      </button>
+    </aside>
+
+    <script>
+      (() => {
+        const messages = {
+          lilo: [
+            'Aloha! Pick an adventure and we’ll learn together.',
+            'Great effort! Every try helps your brain grow.',
+            'Stories, words and creativity are my favourite adventures!',
+            'Remember: learning is more fun when nobody gets left behind.'
+          ],
+          stitch: [
+            'Stitch ready! Let’s solve puzzles and earn stars!',
+            'Ooh! Big brain mission activated!',
+            'Try again—Stitch knows you can do it!',
+            'Maths, coding and science mission? Stitch is ready!'
+          ]
+        };
+        let active = 'lilo';
+        let count = { lilo: 0, stitch: 0 };
+        const speech = document.getElementById('guideSpeech');
+        document.querySelectorAll('.guide-character').forEach(button => {
+          button.addEventListener('click', () => {
+            active = button.dataset.guide;
+            document.querySelectorAll('.guide-character').forEach(x => x.classList.toggle('active', x === button));
+            count[active] = (count[active] + 1) % messages[active].length;
+            speech.textContent = messages[active][count[active]];
+          });
+        });
+
+        const enhance = () => {
+          document.querySelectorAll('.mascot-scene').forEach(scene => {
+            if (scene.dataset.guidesApplied) return;
+            scene.dataset.guidesApplied = 'true';
+            scene.innerHTML = `
+              <div class="main-guide-scene">
+                <div class="main-guide lilo-main"><img src="/assets/lilo.webp" alt="Lilo"><strong>Lilo</strong><small>Story & creativity guide</small></div>
+                <div class="guide-bubble">Choose your next adventure!</div>
+                <div class="main-guide stitch-main"><img src="/assets/stitch.webp" alt="Stitch"><strong>Stitch</strong><small>Puzzle & mission guide</small></div>
+              </div>`;
+          });
+          document.querySelectorAll('.question-card').forEach(card => {
+            if (card.querySelector('.question-guide')) return;
+            const guide = document.createElement('div');
+            guide.className = 'question-guide';
+            guide.innerHTML = `<img src="/assets/stitch.webp" alt="Stitch"><div><strong>Stitch says:</strong><span>Take your time. You can work it out!</span></div>`;
+            card.prepend(guide);
+          });
+          document.querySelectorAll('.worksheet').forEach(sheet => {
+            if (sheet.querySelector('.worksheet-guide')) return;
+            const guide = document.createElement('div');
+            guide.className = 'worksheet-guide';
+            guide.innerHTML = `<img src="/assets/lilo.webp" alt="Lilo"><span>Lilo’s creative worksheet</span>`;
+            sheet.prepend(guide);
+          });
+        };
+        new MutationObserver(enhance).observe(document.getElementById('root'), { childList: true, subtree: true });
+        enhance();
+      })();
+    </script>
+  </body>
+</html>
