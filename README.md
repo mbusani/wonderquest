@@ -1,26 +1,19 @@
-# WonderQuest 3.0 – Learning Games Edition
+# WonderQuest 3.1 — Real Mini-Games Edition
 
-A password-protected, prebuilt Node.js learning adventure for GoDaddy Node.js Hosting.
+This release replaces repeated multiple-choice rounds with distinct game mechanics.
 
-## New in this release
+## Real games
 
-- Six playable mini-game types with five progressively harder levels each
-- Balloon Pop, Alien Memory Match, Pattern Rocket, Sorting Safari, Fishing Challenge and Story Builder
-- Daily challenge and weekly treasure hunt
-- Coins, shells, gems and collectible stickers
-- Personal Adventure Book created from completed game levels
-- Existing missions, players, photos, sounds, animations and progress migration retained
-- Uses `public/assets/stitch.png` throughout
+- Balloon Pop: moving balloons that must be popped
+- Alien Memory Match: flip-and-match cards
+- Pattern Rocket: complete varied visual and number patterns
+- Sorting Safari: drag or tap cards into category baskets
+- Fishing Challenge: catch moving fish carrying the answer
+- Story Builder: arrange word cards into complete sentences
+- Monkey Maze: navigate a grid maze with direction controls
 
-## Run locally
+Each game has five progressively harder levels. The next level unlocks only after the previous level is completed. Completed levels remain locked unless a parent resets the player.
 
-```bash
-npm install
-npm start
-```
+## Deployment
 
-Open `http://localhost:3000`. The default password is controlled by `SITE_PASSWORD`; if unset, see `server.js`.
-
-## GoDaddy
-
-Push the repository to GitHub, pull the latest commit in GoDaddy Node.js Hosting, and redeploy. Do not commit `node_modules` or `.env`.
+Commit these files to GitHub, push the `main` branch, then use **Pull from GitHub** in GoDaddy Node.js Hosting. `package-lock.json` is intentionally ignored for compatibility with the current GoDaddy deployment.
