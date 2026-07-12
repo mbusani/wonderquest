@@ -33,3 +33,11 @@ Do not set `PORT` on GoDaddy; it supplies this automatically.
 ## Deploy through GitHub Desktop
 
 Copy these files into the local `wonderquest` repository, commit them, push origin, then use GoDaddy's Pull from GitHub/redeploy function.
+
+## Version 2.1 enhancements
+
+- Uses `public/assets/stitch.png` everywhere (no Stitch WebP dependency).
+- Rich multi-note sound effects for correct answers, encouragement, rockets, treasure and celebrations.
+- Optional gentle procedural background music with its own on/off button.
+- Animated clouds, ocean waves, fish, butterflies, stars, rainbows, fireworks and richer character reactions.
+- All audio is generated in the browser, so there are no third-party audio files or licences to manage.
